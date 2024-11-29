@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Use the database URL from the .env file
+}
+
+model Instructor {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String    @unique
+  bio        String?
+  courses    Course[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Course {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  price       Float     @default(0)
+  instructor  Instructor @relation(fields: [instructorId], references: [id])
+  instructorId Int
+  lessons     Lesson[]
+  students    StudentCourse[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Lesson {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String    // Could store text or video URLs
+  course    Course    @relation(fields: [courseId], references: [id])
+  courseId  Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Student {
+  id         Int             @id @default(autoincrement())
+  name       String
+  email      String          @unique
+  enrolledCourses StudentCourse[]
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+}
+
+model StudentCourse {
+  id        Int       @id @default(autoincrement())
+  student   Student   @relation(fields: [studentId], references: [id])
+  studentId Int
+  course    Course    @relation(fields: [courseId], references: [id])
+  courseId  Int
+  enrolledAt DateTime @default(now())
+
+  @@unique([studentId, courseId]) // Ensure a student can't enroll in the same course twice
+}

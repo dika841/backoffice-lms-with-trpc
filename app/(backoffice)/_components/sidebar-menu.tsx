@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 // Menu items for LMS based on the schema
 const items = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
-  { title: "Courses", url: "/courses", icon: BookOpen },
+  { title: "Courses", url: "/dashboard/courses", icon: BookOpen },
   { title: "Instructors", url: "/instructors", icon: User },
   { title: "Students", url: "/students", icon: Users },
   { title: "Calendar", url: "/calendar", icon: Calendar },
@@ -28,8 +28,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarContent className="bg-blue-900 text-white">
-        <SidebarGroup>
+      <SidebarContent className="bg-secondary-foreground text-white">
+        <SidebarGroup className="space-y-12 pt-4">
           <SidebarGroupLabel className="text-lg font-semibold text-gray-200">
             LMS Application
           </SidebarGroupLabel>

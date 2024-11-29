@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") // Use the database URL from the .env file
+  url      = env("DATABASE_URL")
 }
 
 model Instructor {
@@ -33,7 +33,7 @@ model Course {
 model Lesson {
   id        Int      @id @default(autoincrement())
   title     String
-  content   String    // Could store text or video URLs
+  content   String    
   course    Course    @relation(fields: [courseId], references: [id])
   courseId  Int
   createdAt DateTime  @default(now())
@@ -57,5 +57,5 @@ model StudentCourse {
   courseId  Int
   enrolledAt DateTime @default(now())
 
-  @@unique([studentId, courseId]) // Ensure a student can't enroll in the same course twice
+  @@unique([studentId, courseId])  
 }

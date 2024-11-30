@@ -18,7 +18,7 @@ const items = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Courses", url: "/dashboard/courses", icon: BookOpen },
   { title: "Instructors", url: "/instructors", icon: User },
-  { title: "Students", url: "/students", icon: Users },
+  { title: "Students", url: "/dashboard/students", icon: Users },
   { title: "Calendar", url: "/calendar", icon: Calendar },
   { title: "Settings", url: "/settings", icon: Settings },
 ];

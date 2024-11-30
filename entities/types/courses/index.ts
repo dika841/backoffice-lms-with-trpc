@@ -42,7 +42,13 @@ export const courseWithRelationsSchema = courseSchema.extend({
   lessons: z.array(lessonSchema).optional(),
   students: z.array(studentCourseSchema).optional(),
 });
-
+export type TStudent = {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 export type TCourses = z.infer<typeof courseSchema>;
 export type TInstructor = z.infer<typeof instructorSchema>;
 export type TLesson = z.infer<typeof lessonSchema>;

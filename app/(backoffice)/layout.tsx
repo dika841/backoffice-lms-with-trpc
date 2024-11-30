@@ -38,8 +38,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </Breadcrumb>
           </div>
         </header>
-
-        {children}
+        <div className="px-8">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );
